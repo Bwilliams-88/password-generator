@@ -33,7 +33,11 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-generateBtn.addEventListener("click", function showOptions() {
-  var optionsList = document.getELementById("OptionsList");
-  optionsList.style.display = "block";
-})
+
+
+var buttonElement = window.document.querySelector("generate");
+buttonElement.addEventListener("click", function(){
+  sign = window.prompt();
+  }
+
+);
