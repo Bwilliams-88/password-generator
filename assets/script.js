@@ -1,16 +1,16 @@
 // Assignment code here
-var numbers = [1,2,3,4,5,6,7,8,9,0];
-var symbols = ["!","@","#","$","%","&"];
-var lowerCase = ["a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z"];
-var upperCase = ["A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z"];
-var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*"; // Characters to include in the password
+var numbers = "1234567890";
+var symbols = "!@#$%^&*";
+var lowerCase = "abcdefghijklmnopqrstuvwxyz";
+var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var charset = ""; // Characters to include in the password
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function generatePassword() {
-  var lengthOfPassword = prompt("How many characters would you like for your password?");
+  var lengthOfPassword = prompt("How many characters would you like for your password? (choose between 8 and 128 characters)");
   console.log(lengthOfPassword);
   if(lengthOfPassword > 128){
    //block
@@ -22,21 +22,32 @@ function generatePassword() {
     return "Please input a longer password"
   }
 
-  var wantsSymbols = confirm("Do you want symbols in your pasword ?")
+  var wantsSymbols = confirm("Do you want symbols in your password?")
   console.log(wantsSymbols)
+  if(wantsSymbols === true){
+    charset += symbols;
+  }
 
-  var wantsLowerCase = confirm("Do you want symbols in your pasword ?")
-  console.log(wantsLowerCase)
-
-  var wantsNumbers = confirm("Do you want numbers in your pasword ?")
+  var wantsNumbers = confirm("Do you want numbers in your password?")
   console.log(wantsNumbers)
+  if(wantsNumbers === true){
+    charset += numbers;
+  }
 
-  var wantsUpperCase = confirm("Do you want symbols in your pasword ?")
+  var wantsLowerCase = confirm("Do you want lower case characters in your password?")
+  console.log(wantsLowerCase)
+  if(wantsLowerCase === true){
+    charset += lowerCase;
+  }
+
+  var wantsUpperCase = confirm("Do you want upper case characters in your password?")
   console.log(wantsUpperCase)
+  if (wantsUpperCase === true){
+    charset += upperCase;
+  }
 
-  var minLength = 8;
-  var maxLength = 128;
-  var passwordLength = Math.floor(Math.random() * (maxLength - minLength + 1)) + minLength;
+
+  var passwordLength = Number(lengthOfPassword);
   var password = "";
 
   for (let i = 0; i < passwordLength; i++) {
@@ -47,7 +58,6 @@ function generatePassword() {
 
  return password;
 
- 
 }
 function writePassword() {
   var password = generatePassword();
@@ -60,4 +70,3 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
